@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>{% block title %} {% endblock %} Habrora</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+    background-color: #a4b4da !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    }
+
+    * {
+    font-family: verdana;
+    font-size: 15px;
+    }
+
+    .content {
+    flex: 1;
+    }
+
+    .footer {
+    text-align: center;
+    padding: 20px;
+    }
+
+    .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    }
+
+    .highlight {
+    font-weight: bold; /* или любое другое оформление */
+    background-color: yellow; /* для подчеркивания */
+    }
+
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"></script>
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/3912/PNG/512/habr_logo_icon_248126.png" />
+  </head>
+
+  <body>
+
+    <div class="skippy visually-hidden-focusable overflow-hidden">
+      <div class="container-xl">
+        <a class="d-inline-flex p-2 m-1" href="#content"></a>
+      </div>
+    </div>
+    <p>
+    </p>
+    <p>
+    </p>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a {% if active == 'index' %}class="nav-link active" aria-current="page"{% else %}class="nav-link"{% endif %} href="/">Главная страница</a>
+            </li>
+            <li class="nav-item">
+              <a {% if active == 'help' %}class="nav-link highlighted" aria-current="page"{% else %}class="nav-link"{% endif %} href="/help">Помощь</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="content" style="margin: 50px 8%">
+      <div class="page-header">
+        <h1>{{self.title()}}</h1>
+      </div>
+{% block content %} {% endblock %}
+    </main>
+
+    <footer>
+      <p class="text-muted text-center"> by Соня Вихлянцева, Далия Гимадиева, Ксюша Сизикова, Майя Сироткина </p>
+    </footer>
+  </body>
+</html>

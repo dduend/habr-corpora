@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Результаты поиска по запросу {{query}} {% endblock %}
+{% block content %}
+
+
+{% if results == '' and error != '' %}
+        <p class="alert alert-secondary">{{ error }}</p>
+{% elif results == [] %}
+        <p class="alert alert-secondary"> По запросу <code> {{ query }} </code> результатов не найдено ;( </p>
+{% elif results != '' %}
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p class="font-weight-bold">Найдено предложений: {{ results|length }}</p>
+            <ul class="list-unstyled">
+              {% for sentence, author, title, link in results %}
+                <li class="mb-4">
+                  <article class="card mb-3">
+                    <div class="card-body p-3">
+                      <div class="mb-2">{{ sentence }}</div>
+                      <span style="display: inline;">🔗</span> <a href="{{ link }}" class="text-decoration-none"> {{ author }} - {{ title }}</a>
+                    </div>
+                  </article>
+                </li>
+              {% endfor %}
+            </ul>
+              {% if results|length > 8 %}
+                <a href="/" class="btn" style="background-color: #dd64a4; color: black; text-align: center; display: block; margin: auto; border-radius: 20px; padding: 10px 20px; transition: background-color 0.3s ease;">
+                    Вернуться на главную
+                </a>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+      <script>
+        new ClipboardJS('.copy-btn');
+      </script>
+{% endif %}
+{% endblock %}
